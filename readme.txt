@@ -4,7 +4,7 @@ Tags: Brand, Extra Data, product Information
 Requires at least: 4.1
 Tested up to: 6.1
 Requires PHP: 5.4
-Stable tag: trunk
+Stable tag: 1.0.0
 License: GPLv2 or later
 
 A simple and nice plugin to add  extra data in woocommerce  product meta data.  this plugin will display custom meta data in single product page and shop page.
