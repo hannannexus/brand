@@ -20,7 +20,7 @@ if( !function_exists('new_brand_add_field')){
     function new_brand_add_field( $tab ){
 		
         $tab['brand'] = [
-           'label' => echo esc_html__('Brand','new_brand'),
+           'label' => __('Brand','new_brand'),
            'target' => 'brand_option',
            'class' => ['hide_if_external'],
            'priority' => 25
@@ -40,7 +40,7 @@ if( !function_exists('new_brand_option_panel')){
                 <?php
                  woocommerce_wp_text_input(array(
                    'id'=>'_brand',
-                   'label'=> echo esc_html__('Add Brand','new_brand'), 
+                   'label'=> __('Add Brand','new_brand'), 
                    'wrapper_class'=> ['show_if_simple','show_if_variable'], 
                  ));
      
@@ -57,7 +57,7 @@ if( !function_exists('new_brand_save_data')){
     function new_brand_save_data( $post_id ){
 
         $product = wc_get_product($post_id);
-        $brand = isset($_POST['_brand']) ? isset($_POST['_brand']) : '';
+        $brand = isset($_POST['_brand']) ? sanitize_text_field($_POST['_brand']) : '';
         // update meta data
         $product->update_meta_data('_brand',sanitize_text_field($brand));
     
@@ -74,7 +74,7 @@ if( !function_exists('new_brand_display_data')){
         $brand_data =  $product->get_meta('_brand');
         
         if( !empty( $brand_data)){
-            printf('<div class="brand"> %s: %s</div>', echo esc_html__('Brand','new_brand'), $brand_data);
+            printf('<div class="brand"> %s: %s</div>', __('Brand','new_brand'), $brand_data);
         }
     }
 }
