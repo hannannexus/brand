@@ -16,8 +16,8 @@
 }
 
  /* add new field under product tab*/
-if( !function_exists('hannannexus_add_new_field')){
-    function hannannexus_add_new_field( $tab ){
+if( !function_exists('new_brand_add_field')){
+    function new_brand_add_field( $tab ){
 		
         $tab['brand'] = [
            'label' => __('Brand','new_brand'),
@@ -30,11 +30,11 @@ if( !function_exists('hannannexus_add_new_field')){
        
    }
 }
- add_action('woocommerce_product_data_tabs','hannannexus_add_new_field');
+ add_action('woocommerce_product_data_tabs','new_brand_add_field');
 
  /* Add new field under brand tab*/
-if( !function_exists('hannannexus_add_option_panel')){
-    function hannannexus_add_option_panel(){
+if( !function_exists('new_brand_option_panel')){
+    function new_brand_option_panel(){
         ?>
             <div id="brand_option" class="panel woocommerce_options_panel hidden">
                 <?php
@@ -50,25 +50,25 @@ if( !function_exists('hannannexus_add_option_panel')){
     
     }
 }
- add_action('woocommerce_product_data_panels','hannannexus_add_option_panel');
+ add_action('woocommerce_product_data_panels','new_brand_option_panel');
 
  /* process brand data as meta*/
-if( !function_exists('hannannexus_save_data')){
-    function hannannexus_save_data( $post_id ){
+if( !function_exists('new_brand_save_data')){
+    function new_brand_save_data( $post_id ){
 
         $product = wc_get_product($post_id);
-        $brand = isset($_POST['_brand']) ? $_POST['_brand'] : '';
+        $brand = isset($_POST['_brand']) ? isset($_POST['_brand']) : '';
         // update meta data
         $product->update_meta_data('_brand',sanitize_text_field($brand));
     
         $product->save();
     }
 }
-add_action('woocommerce_process_product_meta','hannannexus_save_data');
+add_action('woocommerce_process_product_meta','new_brand_save_data');
 
 /* display  meta data in single product */
-if( !function_exists('hannannexus_display_new_brands')){
-    function hannannexus_display_new_brands(){
+if( !function_exists('new_brand_display_data')){
+    function new_brand_display_data(){
         global $post;
         $product = wc_get_product($post->ID);
         $brand_data =  $product->get_meta('_brand');
@@ -78,5 +78,5 @@ if( !function_exists('hannannexus_display_new_brands')){
         }
     }
 }
-add_action('woocommerce_product_meta_start','hannannexus_display_new_brands');
-add_action('woocommerce_after_shop_loop_item_title','hannannexus_display_new_brands');
+add_action('woocommerce_product_meta_start','new_brand_display_data');
+add_action('woocommerce_after_shop_loop_item_title','new_brand_display_data');
