@@ -36,7 +36,7 @@ if( !function_exists('new_brand_add_field')){
 if( !function_exists('new_brand_option_panel')){
     function new_brand_option_panel(){
         ?>
-            <div id="brand_option" class="panel woocommerce_options_panel hidden">
+            <div id="brand_option" class="new_brand">
                 <?php
                  woocommerce_wp_text_input(array(
                    'id'=>'_brand',
