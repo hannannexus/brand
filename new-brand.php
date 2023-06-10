@@ -22,7 +22,7 @@ if( !function_exists('new_brand_add_field')){
         $tab['brand'] = [
            'label' => __('Brand','new_brand'),
            'target' => 'brand_option',
-           'class' => ['hide_if_external'],
+           'class' => 'brand',
            'priority' => 25
        ];
    
